@@ -29,23 +29,48 @@
 //My own headers
 #include "Service functions.h"
 #include "MainMenu.h"
-#include "UniversalContainer.h"
-#include "UniversalContainer_UnitTest.h"
+#include "Collection.h"
+#include "Collection_UnitTest.h"
 
 
 
 // Homework OOP 8 ----------------------------------------------------	
 
+/*
+После уточнения на уроке по заданию вроде как получилось, что надо было сделать класс коллекцию, который содержит элементы самого себя
+Потратив некоторое время пытаясь сделать задание в таком ключе я обнаружил, что получаются какие-то вырожденные структуры в виде массивов, каждый элемент которого тоже массив и так до бесконечности
+Поэтому взял на себя смелость и изменил задание так, чтобы класс-коллекция принимал любые типы данных, в том числе другие коллекции, и возращал кол-во элементов с учетом вложенных коллекций
+
+*/
 
 //Task 1 Container class demo with overloaded operators: + | = | << | >> 
 void Task_1(std::string name_of_task)
 {	
 	do
 	{
+		
 		system("cls");
 		std::cout << "***\t" << name_of_task << "\n";
-		// написал отдельный класс для тестирования
-		std::cout << Universal_Container_UnitTest::main_test();
+	{
+		Collection<int> Collection_obj;
+		//std::cout << Collection_UnitTest::main_test(Collection<int> Collection_obj);
+		std::cout << Collection_UnitTest::main_test(Collection_obj);
+	}
+	{
+		Collection<double> Collection_obj;
+		std::cout << Collection_UnitTest::main_test(Collection_obj);
+	}
+	//{	
+	//	//Collection<int[] {1, 2, 3} > Collection_obj;
+	//	Collection<int[]> Collection_obj;
+	//	std::cout << Collection_UnitTest::main_test(Collection_obj);
+	//}
+	//{
+	//	//Collection<int[] {1, 2, 3} > Collection_obj;
+	//	Collection<std::vector<float>> Collection_obj;
+	//	std::cout << Collection_UnitTest::main_test(Collection_obj);
+	//}
+
 
 		std::cout << "\n\nEsc - exit | any key to continue";
 	} while (_getch() != 27);

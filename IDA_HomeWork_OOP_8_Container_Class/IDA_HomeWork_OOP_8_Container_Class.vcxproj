@@ -24,6 +24,7 @@
     <ProjectGuid>{ea2773bd-9a99-44f4-9875-ea5c41743893}</ProjectGuid>
     <RootNamespace>IDA_HomeWork_OOP_8_Container_Class</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>IDA_HomeWork_OOP_8_Collection_Class</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,16 +130,16 @@
   <ItemGroup>
     <ClCompile Include="!___questions___.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="UniversalContainer.cpp" />
+    <ClCompile Include="Collection.cpp" />
     <ClCompile Include="!IDA_Home_DEFAULT.cpp" />
     <ClCompile Include="Service functions.cpp" />
-    <ClCompile Include="UniversalContainer_UnitTest.cpp" />
+    <ClCompile Include="Collection_UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="UniversalContainer.h" />
+    <ClInclude Include="Collection.h" />
     <ClInclude Include="Service functions.h" />
-    <ClInclude Include="UniversalContainer_UnitTest.h" />
+    <ClInclude Include="Collection_UnitTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
