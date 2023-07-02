@@ -55,7 +55,6 @@ void Task_1(std::string name_of_task)
 	//*
 	{
 		Collection<int> Collection_obj;
-		//std::cout << Collection_UnitTest::main_test(Collection<int> Collection_obj);
 		std::cout << Collection_UnitTest::main_test(Collection_obj);
 	}
 	{
@@ -65,7 +64,8 @@ void Task_1(std::string name_of_task)
 	/* 
 	{
 		//Collection<int[]> Collection_obj;
-		Collection<int[5]> Collection_obj;
+		//Collection<int[5]> Collection_obj;
+		Collection<int*> Collection_obj;
 		std::cout << Collection_UnitTest::main_test(Collection_obj);
 	}//*/
 	
@@ -102,7 +102,52 @@ void Task_2(std::string name_of_task)
 }
 
 //Task 3 
-void Task_3() {}
+template <typename any> void try_size(any& value)
+//template <typename any> void try_size(any* value)
+{
+	std::cout << "\ntypeid(value) -> " << typeid(value).name();
+	std::cout << "\ntypeid(*value) -> "  << typeid(*value).name();
+	std::cout << "\ntry_size -> " << std::size(*value);
+}
+void Task_3()
+{
+	std::vector<int> test_vector{ 1, 2, 3, 4, 5 };
+	std::vector<int>* test_vector_dynamic = new std::vector<int>{ 10, 20, 30, 40, 50 };
+	auto auto_pointer = new std::vector<int>{ 10, 20, 30, 40, 50 };
+
+
+	int N = 111;
+	auto ptr_N = &N;
+	int* N_dynamic = new int{ 222 };
+	int M[3]{ 11, 22, 33 };
+	int* M_ptr = M;
+	int* M_dynamic = new int[3]{ 222, 333, 444 };
+
+	std::cout << "\nstd::size(test_vector) -> " << std::size(test_vector);
+	std::cout << "\nstd::size(test_vector_dynamic) -> " << std::size(*test_vector_dynamic);
+	std::cout << "\nstd::size(auto_pointer) -> " << std::size(*auto_pointer);
+	try_size(auto_pointer);
+
+	//std::cout << "\nstd::size(N);" << std::size(N);
+	//std::cout << "\nstd::size(ptr_N);" << std::size(ptr_N);
+	//std::cout << "\nstd::size(N_dynamic);" << std::size(N_dynamic);
+	
+	//try_size(N);
+	//try_size(ptr_N);
+
+
+	std::cout << "\nstd::size(M) -> " << std::size(M);
+	//std::cout << "\nstd::size(M_ptr);" << std::size(*M_ptr);
+	//std::cout << "\nstd::size(M_dynamic);" << std::size(M_dynamic);
+	//try_size(M);
+	//try_size(M_ptr);
+	//try_size(M_dynamic);
+
+
+
+	_getch();
+};
+
 
 //Task 4
 void Task_4() {}

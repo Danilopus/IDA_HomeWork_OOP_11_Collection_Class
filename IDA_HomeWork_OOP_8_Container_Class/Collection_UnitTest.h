@@ -141,13 +141,15 @@ public:
 		return false;
 	}
 
-	/*
+	/* проблемный тест - никак не хочет принимать указатели в контейнер
 	static bool Collection_test_methods_2(Collection<int[5]>& test_obj)
 	{
 		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
 			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
-		int arr[5] = { 1,2,3,4,5 };
-		test_obj.pushfront(arr).pushfront(arr).ShowValues();
+		//int arr[5] = { 1,2,3,4,5 };
+		int* int_arr = new int[5]{ 1,2,3,4,5 };
+
+		test_obj.pushfront(int_arr).pushfront(int_arr).ShowValues();
 
 		//if (Summ(test_obj) == 9) 
 		{ return true; }
