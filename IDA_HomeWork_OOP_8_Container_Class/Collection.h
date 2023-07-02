@@ -65,19 +65,19 @@ public:
 
 	// Data manage ---------------------------------------------------------
 	//Collection& pushback(any& new_value)
-	Collection& pushback(any new_value)
-	{
-		if (_size >= _capacity) { Add_capacity(); }
-		_values_list[_size] = new_value;
-		_size++;
-		return *this;
-	}	
 	Collection& pushfront(any new_value)
 	{
 		if (_size >= _capacity) Add_capacity();
 		for (int i = _size; i > 0; i--)
 			_values_list[i] = _values_list[i - 1];
 		_values_list[0] = new_value;
+		_size++;
+		return *this;
+	}
+	Collection& pushback(any new_value)
+	{
+		if (_size >= _capacity) { Add_capacity(); }
+		_values_list[_size] = new_value;
 		_size++;
 		return *this;
 	}
@@ -121,7 +121,23 @@ public:
 	Collection* end() {	return _values_list + _size - 1; }
 
 	// Shows ---------------------------------------------------------------
-	void ShowValues() { std::cout << this; }
+	void ShowValues() 
+	{ 
+		//std::cout << this; 
+
+		if (_values_list == nullptr)
+		{
+			std::cout << "[no data]";
+			return;
+		}
+
+		std::cout << "[ ";
+		for (int i = 0; i < _size; i++)
+			//out << Collection_obj->_values_list[i] << " | ";
+			std::cout << _values_list[i] << " | ";
+		std::cout << "\b\b]";
+
+	}
 
 	//Overload operators - reference returned -----------------------------------------	
 	

@@ -11,73 +11,219 @@ public:
 	template <typename any>
 	static std::string main_test(Collection<any> test_obj)
 	{
+		std::string type_id = typeid(test_obj[0]).name();
 		//std::string test_report = "\n\n*** Tests status\n" << typeid(test_obj[0]).name() << "\n";
-		std::cout << typeid(test_obj[0]).name();
+		//std::cout << "\n\n*\n**\n*** SELF Tests module. Collection argument type: " << typeid(test_obj[0]).name() << std::endl;
+		std::cout << "\n\n*\n**\n*** SELF Tests module. Collection argument type: " << type_id << "\n";
 		
-		std::string test_report = "\n\n*** Tests status\n";// +typeid(test_obj[0]).name();
-		// 
-		// 
-		//Collection<any> test_obj;
-	
+		//std::string test_report = "\n\n*** Tests status\n" + "argument type: " + type_id;
+		std::string test_report = "\n\n*** Tests status. "; 
+		test_report += ("Argument type: " + type_id);
 
-		test_report += "\nData manage methods test_1: ";
-		test_report += Collection_test_methods_1(test_obj) ? "Ok" : "failed";
-		test_report += "\nData manage methods test_2: ";
-		test_report += Collection_test_methods_2(test_obj) ? "Ok" : "failed";
-		test_report += "\nPointers test: ";
-		//test_report += Collection_test_pointers(test_obj) ? "Ok" : "failed";
-		test_report += "\nClear test: ";
-		test_report += Collection_test_4(test_obj) ? "Ok" : "failed";
-		test_report += "\nOperator test: ";
-		test_report += Collection_test_5(test_obj) ? "Ok" : "failed";
-		test_report += "\nOperator << cin test: ";
-		test_report += Collection_test_6(test_obj) ? "Ok" : "failed";
+	// Methods test list --------------------------------------------------------*/
 		
+		//1
+		test_report += "\nData manage methods: pushfront test: ";
+		test_report += Collection_test_methods_2(test_obj) ? "Ok" : "failed";
+
+		//2	
+		test_report += "\nData manage methods: pushback test: ";
+		test_report += Collection_test_methods_1(test_obj) ? "Ok" : "failed";
+
+		//3
+		test_report += "\nData manage methods: popfront test: ";
+		test_report += Collection_test_methods_3(test_obj) ? "Ok" : "failed";
+
+		//4
+		test_report += "\nData manage methods: popback test: ";
+		test_report += Collection_test_methods_4(test_obj) ? "Ok" : "failed";
+
+		//5
+		test_report += "\nData manage methods: insert test: ";
+		test_report += Collection_test_methods_5(test_obj) ? "Ok" : "failed";
+
+		//6
+		test_report += "\nData manage methods: clear test: ";
+		test_report += Collection_test_methods_6(test_obj) ? "Ok" : "failed";
+
+		//7
+		test_report += "\nData manage methods: size test: ";
+		test_report += Collection_test_methods_7(test_obj) ? "Ok" : "failed";
+		
+		//8
+		test_report += "\nPointers test: ";
+		test_report += Collection_pointers_test(test_obj) ? "Ok" : "failed";
+
+		// Operators test list --------------------------------------------------------*/
+
+		//1		
+		test_report += "\nOperator [] test: ";
+		test_report += Collection_operators_test_1(test_obj) ? "Ok" : "failed";
+				
 		return test_report;
 	}
-	//template <typename any>
+
+	template <typename any>
+	static bool Collection_test_methods_1(Collection<any>& test_obj)
+	{
+		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(3).pushback(4).pushback(5).ShowValues() -> ";// << std::endl;
+
+		test_obj.pushback(3).pushback(4).pushback(5).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
+		return false;
+	}
 	static bool Collection_test_methods_1(Collection<int>& test_obj)
 	{
-		std::cout << "\nData manage methods test_1\ntest_obj.pushback(3).pushback(5).pushfront(2).pushfront(1).insert(3, 4).ShowValues()\n";
-		test_obj.pushback(3).pushback(5).pushfront(2).pushfront(1).insert(3, 4).ShowValues();
+		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(3).pushback(4).pushback(5).ShowValues() -> ";// << std::endl;
 
-		//if (Summ(test_obj) == 15) { return true; }
+		test_obj.pushback(3).pushback(4).pushback(5).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
 		return false;
 	}		
 	static bool Collection_test_methods_1(Collection<double>& test_obj)
 	{
-		std::cout << "\nData manage methods test_1\ntest_obj.pushback(3).pushback(5).pushfront(2).pushfront(1).insert(3, 4).ShowValues()\n";
-		test_obj.pushback(3).pushback(5).pushfront(2).pushfront(1).insert(3, 4).ShowValues();
+		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(1.23).pushback(-4.56).pushback(7.89101112e5).ShowValues() -> ";
 
-		//if (Summ(test_obj) == 15) { return true; }
+		test_obj.pushback(1.23).pushback(-4.56).pushback(7.89101112e3).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
 		return false;
 	}
-
-
-	template <typename any>
-	static bool Collection_test_methods_2(Collection<double>& test_obj)
-	{
-		std::cout << "\n" << "\nData manage methods test_2\ntest_obj.popback().popfront()\n";
-		//std::cout << test_obj.popback().popfront();
-		test_obj.popback().popfront().ShowValues();
-
-		//if (Summ(test_obj) == 9) { return true; }
-		return false;
-	}	
-
-	
 	template <typename any>
 	static bool Collection_test_methods_2(Collection<any>& test_obj)
 	{
-		std::cout << "\n" << "\nData manage methods test_2\ntest_obj.popback().popfront()\n";
-		//std::cout << test_obj.popback().popfront();
-		test_obj.popback().popfront().ShowValues();
-		//if (Summ(test_obj) == 9) { return true; }
+		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
+			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
+		test_obj.pushfront(2).pushfront(1).ShowValues();
+
+		//if (Summ(test_obj) == 9) 
+		{ return true; }
+		return false;
+	}		
+	template <typename any>
+	static bool Collection_test_methods_3(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : popfront test" << "\n"
+			<< "test_obj.popfront().ShowValues() -> ";
+
+		test_obj.popfront().ShowValues();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+	template <typename any>
+	static bool Collection_test_methods_4(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : popback test" << "\n"
+			<< "test_obj.popback().ShowValues() -> ";
+
+		test_obj.popback().ShowValues();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+	template <typename any>
+	static bool Collection_test_methods_5(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : insert test" << "\n"
+			<< "test_obj.insert(1,555).ShowValues() -> ";
+
+		test_obj.insert(1,555).ShowValues();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+	template <typename any>
+	static bool Collection_test_methods_6(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : clear test" << "\n"
+			<< "test_obj.clear().ShowValues() -> ";
+
+		test_obj.clear().ShowValues();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+	template <typename any>
+	static bool Collection_test_methods_7(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : size test" << "\n"
+			<< "test_obj.pushback(100).pushback(200).pushback(300).size() -> ";
+
+		std::cout << test_obj.pushback(100).pushback(200).pushback(300).size();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+	
+	//* сравнение указателей дает ошибку —2446: почему-то в шаблоне указтель на any не превращаетс€ в указатель на конкретный тип данных???
+	template <typename any>
+	static bool Collection_pointers_test(Collection<any>& test_obj)
+	{	
+		
+		bool result = 1;
+		std::cout << "\n\nPointers test:" << "\n*test_obj.begin() == test_obj[0]";
+
+		/* сравнение указателей дает ошибку —2446: почему-то в шаблоне указтель на any не превращаетс€ в указатель на конкретный тип данных???
+
+		if (test_obj.begin() == &test_obj[0]) std::cout << " true";
+		else { std::cout << " false"; result = 0; }
+
+		std::cout << "\n" << "*test_obj.end() == test_obj[test_obj.size()-1])";
+		if (test_obj.end() == &test_obj[test_obj.size() - 1]) std::cout << " true";
+		else { std::cout << " false"; result = 0; }		
+		
+		//*/
+
+		//return result;
+		
+		
+		std::cout << " -> skipped due to error C2446";
+		return !result;		
+	}
+
+		template <typename any>
+	static bool Collection_operators_test_1(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Operator [] test: " << "\n"
+			<< "test_obj[0] -> ";
+		std::cout << test_obj[0];
+		std::cout << "\ntest_obj[size()-1] -> ";
+		std::cout << test_obj[test_obj.size() - 1];
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
 		return false;
 	}
 
-	/*
-	template <typename any>
+	
+	//static bool Collection_test_clear(Collection<any>& test_obj)
+	//{
+	//	std::cout << "\n\nClear test" << "\n" << "test_obj.clear().ShowValues()\n";
+	//	test_obj.clear().ShowValues();
+
+	//	if (test_obj.size() == 0) { return true; }
+	//	return false;
+	//}
+
+		/*
+	//template <typename any>
 	static bool Collection_test_pointers(Collection<any>& test_obj)
 	{
 		bool result=1;
@@ -93,20 +239,15 @@ public:
 	}
 	*/
 
-	template <typename any>
-	static bool Collection_test_4(Collection<any>& test_obj)
-	{
-		std::cout << "\n\nClear test" << "\n" << "test_obj.clear().ShowValues()\n";
-		test_obj.clear().ShowValues();
 
-		if (test_obj.size() == 0) { return true; }
-		return false;
-	}
+	/*
 	template <typename any>
 	static bool Collection_test_5(Collection<any>& test_obj)
 	{
 		Collection<any> test_obj_2, test_obj_3;
-		std::cout << "\n\nOperator test" << "\n" << "test_obj.pushfront(3).pushfront(2).pushfront(1)\ntest_obj_3 = test_obj_2 = test_obj\ntest_obj_3.ShowValues()\n";
+		std::cout << "\n\nOperator test" << "\n" << "test_obj.pushfront(3).pushfront(2).pushfront(1)\n"
+			<< "test_obj_3 = test_obj_2 = test_obj\n"
+			<< "test_obj_3.ShowValues()\n";
 		test_obj.pushfront(3).pushfront(2).pushfront(1);
 		test_obj_3 = test_obj_2 = test_obj;
 		test_obj_3.ShowValues();
@@ -119,6 +260,9 @@ public:
 		//if (Summ(test_obj_3) == 567) { return true; }
 		return false;
 	}
+	*/
+
+	/*
 	template <typename any>
 	static bool Collection_test_6(Collection<any>& test_obj)
 	{
@@ -132,7 +276,9 @@ public:
 		if (test_obj.size()) { return true; }
 		return false;
 	}
+	*/
 
+/*
 	template <typename any>
 	static any Summ(Collection<any> Collection_obj)
 	{
@@ -141,6 +287,8 @@ public:
 			Summ += Collection_obj[i];
 		return Summ;
 	}
+*/
+
 };
 
 

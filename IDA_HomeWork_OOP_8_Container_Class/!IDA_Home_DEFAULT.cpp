@@ -43,7 +43,7 @@
 
 */
 
-//Task 1 Container class demo with overloaded operators: + | = | << | >> 
+//Task 1 Container class demo with overloaded operators: []
 void Task_1(std::string name_of_task)
 {	
 	do
@@ -93,7 +93,7 @@ int main()
 	//system("mode con cols=60 lines=40"); 
 	Main_menu MainMenu;	
 	MainMenu.AddElement("OOP Home Work 08: Universal Container class");	
-	MainMenu.AddElement("Container class demo with overloaded operators: + | = | << | >> ");
+	MainMenu.AddElement("Container class demo with overloaded operators: [] ");
 	//MainMenu.AddElement("XXX");
 
 	do 
