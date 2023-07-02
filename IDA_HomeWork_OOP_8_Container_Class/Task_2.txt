@@ -59,3 +59,4 @@ span(C++20)	a non-owning view over a contiguous sequence of objects
 
 mdspan(C++23)	a multi-dimensional non-owning array view
 
+Note: std::basic_string is not treated as a container by the standard but behaves much like one due to its similarity.
