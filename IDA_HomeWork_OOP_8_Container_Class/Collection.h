@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <vector>
+#include <iterator>
 #include <map>
 #include <string>
 #include <iostream>
@@ -28,6 +29,7 @@ class Collection
 
 			for (int i = 0; i < _size; i++)
 				new_list[i] = _values_list[i];
+				//*new_list[i] = *_values_list[i];
 
 			delete[] _values_list;
 
@@ -70,7 +72,12 @@ public:
 		if (_size >= _capacity) Add_capacity();
 		for (int i = _size; i > 0; i--)
 			_values_list[i] = _values_list[i - 1];
+		//*_values_list[i] = _values_list[i - 1];
+		//*_values_list[i] = *_values_list[i - 1];
+
 		_values_list[0] = new_value;
+		//*_values_list[0] = new_value;
+		//*_values_list[0] = *new_value;
 		_size++;
 		return *this;
 	}
@@ -115,7 +122,17 @@ public:
 		return *this;
 	}
 
-	size_t size() { return _size; }
+	size_t size()	{ return _size; }
+	size_t fullsize() 
+	{ 
+		size_t inner_size = 0;
+		for (int i = 0; i < _size; i++)
+		{
+			//inner_size += std::size(_values_list[i]);
+		}
+		return 	_size + inner_size;
+	}
+
 
 	Collection* begin() { return _values_list; }
 	Collection* end() {	return _values_list + _size - 1; }

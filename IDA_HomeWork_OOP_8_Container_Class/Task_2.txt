@@ -1,0 +1,61 @@
+all are <class template>
+
+1. Sequence containers 
+Sequence containers implement data structures which can be accessed sequentially.
+
+array(C++11)	static contiguous array
+
+vector	dynamic contiguous array
+
+deque	double-ended queue
+
+forward_list(C++11)	singly-linked list
+
+list	doubly-linked list
+
+2. Associative containers
+Associative containers implement sorted data structures that can be quickly searched (O(log n) complexity).
+
+set	collection of unique keys, sorted by keys
+
+map	collection of key-value pairs, sorted by keys, keys are unique
+
+multiset	collection of keys, sorted by keys
+
+multimap	collection of key-value pairs, sorted by keys
+
+3. Unordered associative containers (since C++11)
+Unordered associative containers implement unsorted (hashed) data structures that can be quickly searched (O(1) average, O(n) worst-case complexity).
+
+unordered_set(C++11)	collection of unique keys, hashed by keys
+
+unordered_map(C++11)	collection of key-value pairs, hashed by keys, keys are unique
+
+unordered_multiset(C++11)	collection of keys, hashed by keys
+
+unordered_multimap(C++11)	collection of key-value pairs, hashed by keys
+
+4.Container adaptors
+Container adaptors provide a different interface for sequential containers.
+
+stack	adapts a container to provide stack (LIFO data structure)
+
+queue adapts a container to provide queue (FIFO data structure)
+
+priority_queue	adapts a container to provide priority queue
+
+flat_set(C++23)	adapts a container to provide a collection of unique keys, sorted by keys
+
+flat_map(C++23) adapts two containers to provide a collection of key-value pairs, sorted by unique keys
+
+flat_multiset(C++23)	adapts a container to provide a collection of keys, sorted by keys
+
+flat_multimap(C++23)	adapts two containers to provide a collection of key-value pairs, sorted by keys
+
+5. Views
+Views provide flexible facilities for interacting with one- or multi-dimensional views over a non-owning array of elements.
+
+span(C++20)	a non-owning view over a contiguous sequence of objects
+
+mdspan(C++23)	a multi-dimensional non-owning array view
+

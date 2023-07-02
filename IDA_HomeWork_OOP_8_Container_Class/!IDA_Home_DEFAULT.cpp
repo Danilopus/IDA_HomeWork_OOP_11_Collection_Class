@@ -25,6 +25,7 @@
 #include <time.h>
 #include <algorithm>
 #include <conio.h>
+#include <fstream>
 //#include <array>
 //My own headers
 #include "Service functions.h"
@@ -46,11 +47,12 @@
 //Task 1 Container class demo with overloaded operators: []
 void Task_1(std::string name_of_task)
 {	
-	do
+	do	
 	{
 		
 		system("cls");
 		std::cout << "***\t" << name_of_task << "\n";
+	//*
 	{
 		Collection<int> Collection_obj;
 		//std::cout << Collection_UnitTest::main_test(Collection<int> Collection_obj);
@@ -59,25 +61,45 @@ void Task_1(std::string name_of_task)
 	{
 		Collection<double> Collection_obj;
 		std::cout << Collection_UnitTest::main_test(Collection_obj);
-	}
-	//{	
-	//	//Collection<int[] {1, 2, 3} > Collection_obj;
-	//	Collection<int[]> Collection_obj;
-	//	std::cout << Collection_UnitTest::main_test(Collection_obj);
-	//}
-	//{
-	//	//Collection<int[] {1, 2, 3} > Collection_obj;
-	//	Collection<std::vector<float>> Collection_obj;
-	//	std::cout << Collection_UnitTest::main_test(Collection_obj);
-	//}
+	}//*/
+	/* 
+	{
+		//Collection<int[]> Collection_obj;
+		Collection<int[5]> Collection_obj;
+		std::cout << Collection_UnitTest::main_test(Collection_obj);
+	}//*/
+	
+	/*
+	{
+		Collection<std::vector<float>> Collection_obj;
+		std::cout << Collection_UnitTest::main_test(Collection_obj);
+	}//*/
 
 
 		std::cout << "\n\nEsc - exit | any key to continue";
 	} while (_getch() != 27);
 }
 
-//Task 2
-void Task_2() {}
+//Task 2 Standart template library container class info
+void Task_2(std::string name_of_task)
+{
+	std::ifstream file_read_obj;
+	do
+	{
+		system("cls");
+		std::cout << "***\t" << name_of_task << "\n";
+		file_read_obj.open("Task_2.txt");
+		if (file_read_obj.is_open())
+		{
+			std::string str_tmp;
+			while (std::getline(file_read_obj, str_tmp))
+				std::cout << str_tmp << '\n';
+		}
+		file_read_obj.close();
+
+		std::cout << "\n\nEsc - exit | any key to continue";
+	} while (_getch() != 27);
+}
 
 //Task 3 
 void Task_3() {}
@@ -93,8 +115,8 @@ int main()
 	//system("mode con cols=60 lines=40"); 
 	Main_menu MainMenu;	
 	MainMenu.AddElement("OOP Home Work 08: Universal Container class");	
-	MainMenu.AddElement("Container class demo with overloaded operators: [] ");
-	//MainMenu.AddElement("XXX");
+	MainMenu.AddElement("Container class demo with overloaded operators: []");
+	MainMenu.AddElement("Standart template library container class info");
 
 	do 
 	{		

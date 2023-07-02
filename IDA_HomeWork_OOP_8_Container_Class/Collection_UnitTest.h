@@ -50,6 +50,10 @@ public:
 		test_report += "\nData manage methods: size test: ";
 		test_report += Collection_test_methods_7(test_obj) ? "Ok" : "failed";
 		
+		//7.1
+		test_report += "\nData manage methods: fullsize test: ";
+		test_report += Collection_test_methods_7_1(test_obj) ? "Ok" : "failed";
+
 		//8
 		test_report += "\nPointers test: ";
 		test_report += Collection_pointers_test(test_obj) ? "Ok" : "failed";
@@ -66,7 +70,7 @@ public:
 	template <typename any>
 	static bool Collection_test_methods_1(Collection<any>& test_obj)
 	{
-		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
 			<< "test_obj.pushback(3).pushback(4).pushback(5).ShowValues() -> ";// << std::endl;
 
 		test_obj.pushback(3).pushback(4).pushback(5).ShowValues();
@@ -78,7 +82,7 @@ public:
 	}
 	static bool Collection_test_methods_1(Collection<int>& test_obj)
 	{
-		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
 			<< "test_obj.pushback(3).pushback(4).pushback(5).ShowValues() -> ";// << std::endl;
 
 		test_obj.pushback(3).pushback(4).pushback(5).ShowValues();
@@ -90,7 +94,7 @@ public:
 	}		
 	static bool Collection_test_methods_1(Collection<double>& test_obj)
 	{
-		std::cout << "\n" << "Data manage methods : pushback test" << "\n"
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
 			<< "test_obj.pushback(1.23).pushback(-4.56).pushback(7.89101112e5).ShowValues() -> ";
 
 		test_obj.pushback(1.23).pushback(-4.56).pushback(7.89101112e3).ShowValues();
@@ -111,6 +115,46 @@ public:
 		{ return true; }
 		return false;
 	}		
+
+	template <typename any>
+	static bool Collection_test_methods_2(Collection<any[]>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
+			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
+		int arr[5] = { 1,2,3,4,5 };
+		test_obj.pushfront(arr).pushfront(arr).ShowValues();
+
+		//if (Summ(test_obj) == 9) 
+		{ return true; }
+		return false;
+	}
+	template <typename any>
+	static bool Collection_test_methods_2(Collection<any*>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
+			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
+		int arr[5] = { 1,2,3,4,5 };
+		test_obj.pushfront(arr).pushfront(arr).ShowValues();
+
+		//if (Summ(test_obj) == 9) 
+		{ return true; }
+		return false;
+	}
+
+	/*
+	static bool Collection_test_methods_2(Collection<int[5]>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
+			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
+		int arr[5] = { 1,2,3,4,5 };
+		test_obj.pushfront(arr).pushfront(arr).ShowValues();
+
+		//if (Summ(test_obj) == 9) 
+		{ return true; }
+		return false;
+	}
+	//*/
+
 	template <typename any>
 	static bool Collection_test_methods_3(Collection<any>& test_obj)
 	{
@@ -171,9 +215,20 @@ public:
 		{ return true; }
 		return false;
 	}
-	
-	//* сравнение указателей дает ошибку —2446: почему-то в шаблоне указтель на any не превращаетс€ в указатель на конкретный тип данных???
 	template <typename any>
+	static bool Collection_test_methods_7_1(Collection<any>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : fullsize test" << "\n"
+			<< "test_obj.pushback(100).pushback(200).pushback(300).fullsize() -> ";
+
+		std::cout << test_obj.pushback(100).pushback(200).pushback(300).fullsize();
+
+		//if (test_obj.size() == 0) 
+		{ return true; }
+		return false;
+	}
+
+		template <typename any>
 	static bool Collection_pointers_test(Collection<any>& test_obj)
 	{	
 		
@@ -195,7 +250,7 @@ public:
 		
 		
 		std::cout << " -> skipped due to error C2446";
-		return !result;		
+		return false;		
 	}
 
 		template <typename any>
@@ -211,72 +266,10 @@ public:
 		{ return true; }
 		return false;
 	}
-
-	
-	//static bool Collection_test_clear(Collection<any>& test_obj)
-	//{
-	//	std::cout << "\n\nClear test" << "\n" << "test_obj.clear().ShowValues()\n";
-	//	test_obj.clear().ShowValues();
-
-	//	if (test_obj.size() == 0) { return true; }
-	//	return false;
-	//}
-
-		/*
-	//template <typename any>
-	static bool Collection_test_pointers(Collection<any>& test_obj)
-	{
-		bool result=1;
-		std::cout << "\n\nPointers test:" << "\n*test_obj.begin() == test_obj[0]";
-		if (test_obj.begin() == &test_obj[0]) std::cout << " true";
-		else { std::cout << " false"; result = 0; }
-
-		std::cout << "\n" << "*test_obj.end() == test_obj[test_obj.size()-1])";
-		if (test_obj.end() == &test_obj[test_obj.size() - 1]) std::cout << " true";
-		else { std::cout << " false"; result = 0; }
-
-		return result;
-	}
-	*/
-
-
-	/*
-	template <typename any>
-	static bool Collection_test_5(Collection<any>& test_obj)
-	{
-		Collection<any> test_obj_2, test_obj_3;
-		std::cout << "\n\nOperator test" << "\n" << "test_obj.pushfront(3).pushfront(2).pushfront(1)\n"
-			<< "test_obj_3 = test_obj_2 = test_obj\n"
-			<< "test_obj_3.ShowValues()\n";
-		test_obj.pushfront(3).pushfront(2).pushfront(1);
-		test_obj_3 = test_obj_2 = test_obj;
-		test_obj_3.ShowValues();
-
-		std::cout << "\n " << "\n" << "test_obj_2.insert(0, 555)\ntest_obj_3 = test_obj + test_obj_2\ntest_obj_3.ShowValues()\n";
-		test_obj_2.insert(0, 555);
-		//test_obj_3 = test_obj + test_obj_2;
-		test_obj_3.ShowValues();
-
-		//if (Summ(test_obj_3) == 567) { return true; }
-		return false;
-	}
-	*/
-
-	/*
-	template <typename any>
-	static bool Collection_test_6(Collection<any>& test_obj)
-	{
-		std::cout << "\n\nOperator << cin test" << "\n" 
-			<< "std::cin >> test_obj\n";
-		//std::cin >> test_obj;
 		
-		std::cout << "\n " << "test_obj.ShowValues()\n";
-		test_obj.ShowValues();
-		
-		if (test_obj.size()) { return true; }
-		return false;
-	}
-	*/
+
+
+
 
 /*
 	template <typename any>

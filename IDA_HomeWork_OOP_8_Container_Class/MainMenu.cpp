@@ -20,7 +20,7 @@ int Main_menu::User_Choice_Handle()
 	if (choice == 0) { std::cout << "\nGood By"; for (int j = 0; j < 50; j++) { Sleep(50 - j); std::cout << "y"; } std::cout << "e!"; Sleep(850);  return 0; }
 
 	else if (choice == 1) Task_1(_menu_elements[1]);
-	else if (choice == 2) Task_2();
+	else if (choice == 2) Task_2(_menu_elements[2]);
 	else if (choice == 3) Task_3();
 	else if (choice == 4) Task_4();
 
@@ -36,7 +36,7 @@ int Main_menu::User_Choice_Handle(int key_code)
 	case 27: case 48: 
 	{ std::cout << "\nGood By"; for (int j = 0; j < 50; j++) { Sleep(50 - j); std::cout << "y"; } std::cout << "e!"; Sleep(850);  return 0;	}
 	case 49: Task_1(_menu_elements[1]); break;
-	case 50: Task_2(); break;
+	case 50: Task_2(_menu_elements[2]); break;
 	case 51: Task_3(); break;
 	case 52: Task_4(); break;
 	//case 53: Task_5(); break;

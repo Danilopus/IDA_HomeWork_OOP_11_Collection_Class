@@ -7,7 +7,7 @@
 //#include <conio.h>
 
 extern void Task_1(std::string);
-extern void Task_2();
+extern void Task_2(std::string);
 extern void Task_3();
 extern void Task_4();
 
