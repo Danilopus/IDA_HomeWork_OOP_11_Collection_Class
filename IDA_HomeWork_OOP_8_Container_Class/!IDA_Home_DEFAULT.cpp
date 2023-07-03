@@ -61,7 +61,7 @@ void Task_1(std::string name_of_task)
 		Collection<double> Collection_obj;
 		std::cout << Collection_UnitTest::main_test(Collection_obj);
 	}//*/
-	/* 
+	//* 
 	{
 		//Collection<int[]> Collection_obj;
 		//Collection<int[5]> Collection_obj;

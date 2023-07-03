@@ -116,6 +116,9 @@ public:
 		return false;
 	}		
 
+	/*template <>
+	static bool Collection_test_methods_2<int*>(Collection<int*>& test_obj);*/
+
 	template <typename any>
 	static bool Collection_test_methods_2(Collection<any[]>& test_obj)
 	{
@@ -141,8 +144,10 @@ public:
 		return false;
 	}
 
-	/* проблемный тест - никак не хочет принимать указатели в контейнер
-	static bool Collection_test_methods_2(Collection<int[5]>& test_obj)
+	//* проблемный тест - никак не хочет принимать указатели в мой контейнер
+	//static bool Collection_test_methods_2(Collection<int[5]>& test_obj)
+	static bool Collection_test_methods_2(Collection<int*>& test_obj)
+
 	{
 		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
 			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
