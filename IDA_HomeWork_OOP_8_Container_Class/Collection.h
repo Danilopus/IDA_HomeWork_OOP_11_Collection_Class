@@ -123,6 +123,7 @@ public:
 	}
 
 	size_t size()	{ return _size; }
+
 	size_t fullsize() 
 	{ 
 		size_t inner_size = 0;
