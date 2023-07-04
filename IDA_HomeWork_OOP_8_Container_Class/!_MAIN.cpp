@@ -72,13 +72,15 @@ void Task_1(std::string name_of_task)
 		//Local tests 
 		int M;
 		int* int_ptr = &M;
-
+		std::cout << "\n\nLight local test\n";
 		Collection_obj.pushback(int_ptr).pushback(int_ptr).ShowValues();
+		std::cout << "\n";
+		Collection_obj.pushfront(int_ptr).pushfront(int_ptr).ShowValues();
 
 
 	}//*/
 	
-	/* STL vector test block
+	//* STL vector test block
 	{
 		Collection<std::vector<float>> Collection_obj;
 		//std::cout << Collection_UnitTest::main_test(Collection_obj);
@@ -89,7 +91,8 @@ void Task_1(std::string name_of_task)
 
 		//std::cout << test_vec;
 
-		Collection_obj.pushback(test_vec).pushback(test_vec).ShowValues();
+		//Collection_obj.pushback(test_vec).pushback(test_vec).ShowValues();
+		std::cout << "\nsize " << Collection_obj.pushback(test_vec).pushback(test_vec).size();
 
 
 	}//*/
