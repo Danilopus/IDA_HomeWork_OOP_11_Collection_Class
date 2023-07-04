@@ -131,7 +131,7 @@
     <ClCompile Include="!___questions___.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Collection.cpp" />
-    <ClCompile Include="!IDA_Home_DEFAULT.cpp" />
+    <ClCompile Include="!_MAIN.cpp" />
     <ClCompile Include="Service functions.cpp" />
     <ClCompile Include="Collection_UnitTest.cpp" />
   </ItemGroup>

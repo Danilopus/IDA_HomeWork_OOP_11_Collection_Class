@@ -61,18 +61,37 @@ void Task_1(std::string name_of_task)
 		Collection<double> Collection_obj;
 		std::cout << Collection_UnitTest::main_test(Collection_obj);
 	}//*/
-	//* 
+	
+	//* Pointers test block
 	{
 		//Collection<int[]> Collection_obj;
 		//Collection<int[5]> Collection_obj;
 		Collection<int*> Collection_obj;
-		std::cout << Collection_UnitTest::main_test(Collection_obj);
+		//std::cout << Collection_UnitTest::main_test(Collection_obj);
+
+		//Local tests 
+		int M;
+		int* int_ptr = &M;
+
+		Collection_obj.pushback(int_ptr).pushback(int_ptr).ShowValues();
+
+
 	}//*/
 	
-	/*
+	/* STL vector test block
 	{
 		Collection<std::vector<float>> Collection_obj;
-		std::cout << Collection_UnitTest::main_test(Collection_obj);
+		//std::cout << Collection_UnitTest::main_test(Collection_obj);
+
+				//Local tests
+		std::vector<float> test_vec{ 1,2,3 };
+		//std::vector<double> test_vec{ 1,2,3 };
+
+		//std::cout << test_vec;
+
+		Collection_obj.pushback(test_vec).pushback(test_vec).ShowValues();
+
+
 	}//*/
 
 
@@ -101,19 +120,20 @@ void Task_2(std::string name_of_task)
 	} while (_getch() != 27);
 }
 
-//Task 3 
+//Task 3 std::size inspection
 template <typename any> void try_size(any& value)
 //template <typename any> void try_size(any* value)
 {
 	std::cout << "\ntypeid(value) -> " << typeid(value).name();
 	std::cout << "\ntypeid(*value) -> "  << typeid(*value).name();
-	std::cout << "\ntry_size -> " << std::size(*value);
+	//std::cout << "\ntry_size -> " << std::size(value);
+	std::cout << "\ntry_size* -> " << std::size(*value);
 }
-void Task_3()
+void Task_3() 
 {
 	std::vector<int> test_vector{ 1, 2, 3, 4, 5 };
 	std::vector<int>* test_vector_dynamic = new std::vector<int>{ 10, 20, 30, 40, 50 };
-	auto auto_pointer = new std::vector<int>{ 10, 20, 30, 40, 50 };
+	auto auto_pointer = new std::vector<int>{ 100, 200, 300, 400, 500 };
 
 
 	int N = 111;

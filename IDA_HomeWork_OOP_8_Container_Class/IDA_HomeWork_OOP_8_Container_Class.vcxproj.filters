@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="!IDA_Home_DEFAULT.cpp">
+    <ClCompile Include="!_MAIN.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">

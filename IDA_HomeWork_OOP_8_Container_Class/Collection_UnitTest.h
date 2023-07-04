@@ -23,12 +23,12 @@ public:
 	// Methods test list --------------------------------------------------------*/
 		
 		//1
-		test_report += "\nData manage methods: pushfront test: ";
-		test_report += Collection_test_methods_2(test_obj) ? "Ok" : "failed";
-
-		//2	
 		test_report += "\nData manage methods: pushback test: ";
 		test_report += Collection_test_methods_1(test_obj) ? "Ok" : "failed";
+
+		//2	
+		test_report += "\nData manage methods: pushfront test: ";
+		test_report += Collection_test_methods_2(test_obj) ? "Ok" : "failed";
 
 		//3
 		test_report += "\nData manage methods: popfront test: ";
@@ -104,6 +104,91 @@ public:
 		{ return true; }
 		return false;
 	}
+
+
+	// Как сделать обощенную (не перегружать каждый отдельный тип указателей, как например int*) 
+	// перегрузку на случай когда typename это указатель?
+	// 
+	//template <typename any>
+	//static bool Collection_test_methods_1,<any*>(Collection<any*>& test_obj);
+	
+
+	/* Error	C2768	'Collection_UnitTest::Collection_test_methods_1': illegal use of explicit template arguments
+	template <typename any>
+	static bool Collection_test_methods_1<any*>(Collection<any*>& test_obj)
+	{
+		std::cout << "\n\n" << "test type: template <typename any>	static bool Collection_test_methods_1<any*>(Collection<any*>&test_obj)";
+
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(int_ptr).pushback(int_arr).ShowValues() -> ";
+
+		int* int_ptr = nullptr;
+		int* int_arr = new int[5] { 1, 2, 3, 4, 5 };
+
+		test_obj.pushback(int_ptr).pushback(int_arr).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
+		return false;
+	}//*/
+
+	template <>
+	static bool Collection_test_methods_1<int*>(Collection<int*>& test_obj)
+	{
+		std::cout << "\n\n" << "test type: template <>	static bool Collection_test_methods_1<int*>(Collection<int*>&test_obj)";
+
+		
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(int_ptr).pushback(int_arr).ShowValues() -> ";
+
+		int* int_ptr = nullptr;
+		int* int_arr = new int[5] { 1, 2, 3, 4, 5 };
+
+		test_obj.pushback(int_ptr).pushback(int_arr).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
+		return false;
+	}
+
+	/* Error	C2535	'bool Collection_UnitTest::Collection_test_methods_1<int*>(Collection<int *> &)': member function already defined or declared
+	static bool Collection_test_methods_1<int*>(Collection<int*>& test_obj)
+	{
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(int_ptr).pushback(int_arr).ShowValues() -> ";
+
+		int* int_ptr = nullptr;
+		int* int_arr = new int[5] { 1, 2, 3, 4, 5 };
+
+		test_obj.pushback(int_ptr).pushback(int_arr).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
+		return false;
+	}//*/
+
+	static bool Collection_test_methods_1(Collection<int*>& test_obj)
+	{
+		std::cout << "\n\n" << "test type: static bool Collection_test_methods_1(Collection<int*>& test_obj)";
+
+		
+		std::cout << "\n\n" << "Data manage methods : pushback test" << "\n"
+			<< "test_obj.pushback(int_ptr).pushback(int_arr).ShowValues() -> ";
+
+		int* int_ptr = nullptr;
+		int* int_arr = new int[5] { 1, 2, 3, 4, 5 };
+
+		test_obj.pushback(int_ptr).pushback(int_arr).ShowValues();
+
+
+		//if (Summ(test_obj) == 15) 
+		{ return true; }
+		return false;
+	}
+
 	template <typename any>
 	static bool Collection_test_methods_2(Collection<any>& test_obj)
 	{
@@ -114,54 +199,7 @@ public:
 		//if (Summ(test_obj) == 9) 
 		{ return true; }
 		return false;
-	}		
-
-	/*template <>
-	static bool Collection_test_methods_2<int*>(Collection<int*>& test_obj);*/
-
-	template <typename any>
-	static bool Collection_test_methods_2(Collection<any[]>& test_obj)
-	{
-		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
-			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
-		int arr[5] = { 1,2,3,4,5 };
-		test_obj.pushfront(arr).pushfront(arr).ShowValues();
-
-		//if (Summ(test_obj) == 9) 
-		{ return true; }
-		return false;
 	}
-	template <typename any>
-	static bool Collection_test_methods_2(Collection<any*>& test_obj)
-	{
-		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
-			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
-		int arr[5] = { 1,2,3,4,5 };
-		test_obj.pushfront(arr).pushfront(arr).ShowValues();
-
-		//if (Summ(test_obj) == 9) 
-		{ return true; }
-		return false;
-	}
-
-	//* проблемный тест - никак не хочет принимать указатели в мой контейнер
-	//static bool Collection_test_methods_2(Collection<int[5]>& test_obj)
-	static bool Collection_test_methods_2(Collection<int*>& test_obj)
-
-	{
-		std::cout << "\n\n" << "Data manage methods : pushfront test" << "\n"
-			<< "test_obj.pushfront(2).pushfront(1).ShowValues() -> ";
-		//int arr[5] = { 1,2,3,4,5 };
-		int* int_arr = new int[5]{ 1,2,3,4,5 };
-
-		test_obj.pushfront(int_arr).pushfront(int_arr).ShowValues();
-
-		//if (Summ(test_obj) == 9) 
-		{ return true; }
-		return false;
-	}
-	//*/
-
 	template <typename any>
 	static bool Collection_test_methods_3(Collection<any>& test_obj)
 	{
