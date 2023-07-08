@@ -9,7 +9,7 @@ public:
 	
 	//static std::string main_test()
 	template <typename any>
-	static std::string main_test(Collection<any> test_obj)
+	static std::string main_test(Collection<any>& test_obj)
 	{
 		std::string type_id = typeid(test_obj[0]).name();
 		//std::string test_report = "\n\n*** Tests status\n" << typeid(test_obj[0]).name() << "\n";

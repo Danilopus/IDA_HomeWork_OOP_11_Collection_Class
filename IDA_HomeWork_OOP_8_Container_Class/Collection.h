@@ -8,7 +8,20 @@
 #include <conio.h>
 #include <iomanip>
 #include <cassert>
+//#include <initializer_list>
 
+
+/****
+\brief Самодельный контейнер по типу std::vector
+
+\bug не смог заставить работать настоящий ranged for - ругается на перегузку !=. Ошибка E0350
+
+\todo 
+1) ranged for	
+2) fullsize() via traits 
+3) more doxigen comments
+
+*/
 
 template <typename any>
 class Collection
@@ -16,7 +29,6 @@ class Collection
 	size_t _size = 0;
 	size_t _capacity = 0;
 	any* _values_list = nullptr;	
-	//Collection* _values_list = nullptr; какое значение/применение может быть у такого элемента?
 
 	void Add_capacity(size_t capacity_to_add = 0)
 	{		
@@ -135,8 +147,8 @@ public:
 	}
 
 
-	Collection* begin() { return _values_list; }
-	Collection* end() {	return _values_list + _size - 1; }
+	//Collection* begin() { return _values_list; }
+	//Collection* end() {	return _values_list + _size - 1; }
 
 	// Shows ---------------------------------------------------------------
 	void ShowValues() 
@@ -149,7 +161,7 @@ public:
 			return;
 		}
 
-		std::cout << "[ ";
+		std::cout << "\n[ ";
 		for (int i = 0; i < _size; i++)
 			//out << Collection_obj->_values_list[i] << " | ";
 			std::cout << _values_list[i] << " | ";
@@ -200,38 +212,91 @@ public:
 
 	any& operator [ ] (size_t index) { return *(_values_list + index); }
 	any& operator [ ] (size_t index) const { return *(_values_list + index); }
-
-
-	/*
-	friend std::ostream& operator << (std::ostream& out, Collection* Collection_obj)
+	
+	class iterator 
 	{
-		if (Collection_obj->_values_list == nullptr)
-			return out << "[no data]";
+	private:
+		iterator() = delete;
 
-		out << "[ ";
-		for (int i = 0; i < Collection_obj->_size; i++)
-			//out << Collection_obj->_values_list[i] << " | ";
-			out << (*Collection_obj)[i] << " | ";
-		out << "\b\b]";
-		return out;
-	}
-	friend std::ostream& operator << (std::ostream& out, Collection& Collection_obj)
-	{
-		if (Collection_obj._values_list == nullptr)
-			return out << "[no data]";
+		//iterator(const Collection&& position, any* place) : collection_(position), place_(place)	{	}
+		
+		iterator(any* place) : place_(place) {	}
 
-		out << "[ ";
-		for (int i = 0; i < Collection_obj._size; i++)
-			//		out << Collection_obj._values_list[i] << " | ";
-			out << Collection_obj[i] << " | ";
-		out << "\b\b]";
-		return out;
-	}
-	friend std::istream& operator >> (std::istream& in, Collection& Collection_obj) 
-	{
-		//Collection_obj.pushback(Get_LL_SA());
-		return in;
-	}
-	*/
+		friend class Collection;
+		//const Collection& collection_;
+		any* place_;
+
+	public:
+
+		any* operator->()const	{ return place_; }
+		any& operator*()const	{ return *place_; }
+		operator any* ()const	{ return place_; };
+
+		iterator& operator+(int i)const	
+		{ 
+			iterator result(*this); 
+			result.place_ += i;
+			return result;
+		}
+		iterator& operator+=(int i) 
+		{
+			place_ += i;
+			return *this;
+		}
+		iterator& operator-(int i)const 
+		{
+			iterator result(*this);
+			result.place_ -= i;
+			return result;
+		}
+		iterator& operator-=(int i) 
+		{
+			place_ -= i;
+			return *this;
+		}
+		iterator& operator--() 
+		{
+			place_ -= 1;
+			return *this;
+		}
+		iterator& operator--(int) 
+		{
+			iterator tmp{ *this };
+			place_ -= 1;
+			return tmp;
+		}
+		iterator& operator++() 
+		{
+			place_ += 1;
+			return *this;
+		}
+		iterator& operator++(int) {
+			iterator tmp{ *this };
+			place_ += 1;
+			return tmp;
+		}
+
+		operator bool()const {
+			return static_cast<bool>(place_);
+		}
+
+		bool operator==(const iterator&& other)const	{ return place_ == other.place_; }
+		//bool operator!=(const iterator&& other)const	{	return !(*this == other); }
+		bool operator!=(const iterator&& other)const	{	return !(place_ == other.place_); }
+		bool operator<(const iterator&& other)const	{ return place_ < other.place_; }
+		bool operator<=(const iterator&& other)const	{ return place_ <= other.place_; }
+		bool operator>(const iterator&& other)const	{ return place_ > other.place_; }
+		bool operator>=(const iterator&& other)const	{ return place_ >= other.place_; }
+		
+		any& operator[](int i)const	{ return place_[i]; }
+		//const Collection const* from()const	{ return &collection_; }
+	
+	};
+
+	iterator begin() { return _values_list; }
+	iterator end() { return (_values_list + _size); }
+
+	//iterator begin() {	return iterator(*this, _values_list);	}
+	//iterator end() {return iterator(*this, _values_list + _size);	}
 };
 
